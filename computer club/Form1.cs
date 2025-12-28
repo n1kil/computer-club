@@ -16,5 +16,12 @@ namespace computer_club
         {
             InitializeComponent();
         }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        
     }
 }

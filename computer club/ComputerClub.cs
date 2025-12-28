@@ -85,7 +85,7 @@ namespace computer_club
                 }
                 else
                 {
-                    CreateNewClients(1, new Random);
+                    CreateNewClients(1, new Random());
                     Console.WriteLine("Неверный ввод");
                 }
 
