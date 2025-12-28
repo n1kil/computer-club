@@ -9,13 +9,13 @@ namespace computer_club
     class Computer
     {
         private Client _client;
-        private int _minutesRemaining;
+        public int MinutesRemaining { get; private set; }
 
         public bool IsTaken
         {
             get
             {
-                return _minutesRemaining > 0;
+                return MinutesRemaining > 0;
             }
         }
         public int PricePerMinute { get; private set; }
@@ -29,7 +29,7 @@ namespace computer_club
         public void BecomeTaken(Client client)
         {
             _client = client;
-            _minutesRemaining = _client.DesiredMinutes;
+            MinutesRemaining = _client.DesiredMinutes;
         }
 
         public void BecomeEmpty()
@@ -39,14 +39,14 @@ namespace computer_club
 
         public void SpendOneMinute()
         {
-            _minutesRemaining--;
+            MinutesRemaining--;
         }
 
         public void ShowState()
         {
             if (IsTaken)
             {
-                Console.WriteLine($"Компьютер занят, осталось {_minutesRemaining} минут");
+                Console.WriteLine($"Компьютер занят, осталось {MinutesRemaining} минут");
             }
             else
             {

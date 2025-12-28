@@ -9,10 +9,21 @@ namespace computer_club
 {
     class ComputerClub
     {
-        private int _money = 0;
+        public int _money
+        {
+            get
+            {
+                return _money;
+            }
+            private set
+            {
+                _money = 0;
+            }
+        }
 
         private List<Computer> _computers = new List<Computer>();
         private Queue<Client> _clients = new Queue<Client>();
+        
         
 
         public ComputerClub(int computersCount)
@@ -25,7 +36,18 @@ namespace computer_club
             }
 
 
-            CreateNewClients(25, random);
+            CreateNewClients(100, random);
+        }
+
+
+        public Client GetCurrentClient()
+        {
+            return _clients.Dequeue();
+        }
+
+        public Computer GetComputerById(int index)
+        {
+            return _computers[index];
         }
 
         public void CreateNewClients(int count, Random random)
@@ -46,10 +68,7 @@ namespace computer_club
             while(_clients.Count > 0)
             {
                 Client newClient = _clients.Dequeue();
-                Console.WriteLine($"Баланс клуба - {_money}");
-                Console.WriteLine($"Пришел новый клиент, его зовут {newClient.Name}, и он хочет купить {newClient.DesiredMinutes} минут");
-
-                ShowAllComputerState();
+                
 
                 Console.WriteLine("Вы предлагаете ему компьютер: ");
                 string userInput = Console.ReadLine();

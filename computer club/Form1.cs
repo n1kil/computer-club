@@ -16,9 +16,28 @@ namespace computer_club
         public Form1()
         {
             InitializeComponent();
+            AddLabels();
         }
 
         private ComputerClub _newComputerClub = new ComputerClub(11);
+        private List<Label> _labelsList = new List<Label>();
+        private List<Computer> _computers;
+        private Client _currentClient;
+        private void AddLabels()
+        {
+            _labelsList.Add(label1);
+            _labelsList.Add(label2);
+            _labelsList.Add(label3);
+            _labelsList.Add(label4);
+            _labelsList.Add(label5);
+            _labelsList.Add(label6);
+            _labelsList.Add(label7);
+            _labelsList.Add(label8);
+            _labelsList.Add(label9);
+            _labelsList.Add(label10);
+            _labelsList.Add(label11);
+
+        }
 
         private void pictureBox1_Click(object sender, EventArgs e)
         {
@@ -47,14 +66,38 @@ namespace computer_club
 
         }
 
-        private void UpdateComputerInfo(int ComputerIndex)
+        private void UpdateComputersInfo()
         {
+            for (int i = 0; i < 11; i++)
+            {
+                Computer computer = _newComputerClub.GetComputerById(i);
+                if (computer.IsTaken)
+                {
+                    _labelsList[i].Text = $"Компьютер занят, осталось {computer.MinutesRemaining}";
+                }
+                else
+                {
+                    _labelsList[i].Text = $"Компьютер свободен, цена за минуту - {computer.PricePerMinute}";
+                }
+            }
             
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
+            Client nowClient = _newComputerClub.GetCurrentClient();
+            UpdateClientInfo(_currentClient);
             _newComputerClub.SpendOneMinute();
+            UpdateBalanceOfClub(_newComputerClub._money);
+            UpdateComputersInfo();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            if (!_newComputerClub.GetComputerById(1).IsTaken)
+            {
+                _newComputerClub.GetComputerById(1).BecomeTaken(_currentClient); 
+            }
         }
     }
 }
