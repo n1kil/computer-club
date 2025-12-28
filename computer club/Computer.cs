@@ -17,11 +17,41 @@ namespace computer_club
             {
                 return _minutesRemaining > 0;
             }
-            set
-            {
-
-            }
         }
         public int PricePerMinute { get; private set; }
+
+
+        public Computer(int pricePerMinute)
+        {
+            PricePerMinute = pricePerMinute;
+        }
+
+        public void BecomeTaken(Client client)
+        {
+            _client = client;
+            _minutesRemaining = _client.DesiredMinutes;
+        }
+
+        public void BecomeEmpty()
+        {
+            _client = null;
+        }
+
+        public void SpendOneMinute()
+        {
+            _minutesRemaining--;
+        }
+
+        public void ShowState()
+        {
+            if (IsTaken)
+            {
+                Console.WriteLine($"Компьютер занят, осталось {_minutesRemaining} минут");
+            }
+            else
+            {
+                Console.WriteLine($"Компьютер свободен, цена за минуту - {PricePerMinute}");
+            }
+        }
     }
 }
