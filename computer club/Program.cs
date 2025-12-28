@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using computer_club;
 
 namespace computer_club
 {
@@ -17,6 +18,8 @@ namespace computer_club
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Form1());
+
+            ComputerClub newClub = new ComputerClub(10);
         }
     }
 }
