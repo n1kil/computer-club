@@ -105,7 +105,7 @@ namespace computer_club
             }
         }
 
-        private void SpendOneMinute()
+        public void SpendOneMinute()
         {
             foreach(var computer in _computers)
             {

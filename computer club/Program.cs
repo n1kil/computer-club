@@ -18,8 +18,6 @@ namespace computer_club
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Form1());
-
-            ComputerClub newClub = new ComputerClub(10);
         }
     }
 }
